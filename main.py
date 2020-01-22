@@ -53,26 +53,14 @@ def check_winrate(action):
                 or x == loss_index[6] 
                 or x == loss_index[7]):
                 result_data.append(0)
-        #recommend part
-    if sum(result_data) >= 6:
-        recommended_level = sum(result_data)
-    
-    elif sum(result_data) >= 5:
-        cnt = 0
-        for x in result_data:
-            if x == 1:
-                cnt = cnt + 1
-            else:
-                break
-            if cnt == 3:
-                recommended_level = sum(result_data) + 0
-                break
-            elif cnt == 4:
-                recommended_level = sum(result_data) + 1
-                break
-            elif cnt == 5:
-                recommended_level = sum(result_data) + 2
-                break
+    #recommend part
+    j = 7
+    sum_weight = 0
+    for i in result_data:
+        sum_weight = i * j + sum_weight
+        j = j-1
+    recommended_level = sum_weight/0.28
+    recommended_level = int(recommended_level)
 
     return result_data,recommended_level
 
@@ -116,26 +104,30 @@ if(__name__=='__main__'):
     status = []
     last_status = []
     print('Running bot.')
-    while True:
-        if time_check():
-            for action in currency_pair:
-                data,level = check_winrate(action)
-                print(action, data, level)
-                if level >= 2:
-                    status.append(tuple((action,level)))
-                # else:
-                #     status.append(0)
+    try:
+        while True:
+            if time_check():
+                for action in currency_pair:
+                    data,level = check_winrate(action)
+                    print(action, data, level)
+                    if level >= 2:
+                        status.append(tuple((action,level)))
+                    # else:
+                    #     status.append(0)
 
-            if status != last_status:
-                last_status = status
-                timeis = time.localtime()
-                status.sort(key = operator.itemgetter(1), reverse = True)
-                statusJson = json.dumps(status)
-                print(statusJson)
-                print('have updated.')
-                pubMqtt.pubMQTT(statusJson)
-                status.clear()
-                time.sleep(60)
-            elif status == last_status:
-                print('No update.')
-                time.sleep(10)
+                if status != last_status:
+                    last_status = status
+                    timeis = time.localtime()
+                    status.sort(key = operator.itemgetter(1), reverse = True)
+                    statusJson = json.dumps(status)
+                    print(statusJson)
+                    print('have updated.')
+                    pubMqtt.pubMQTT(statusJson)
+                    status.clear()
+                    time.sleep(60)
+                elif status == last_status:
+                    print('No update.')
+                    time.sleep(10)
+
+    except:
+        print("error")
