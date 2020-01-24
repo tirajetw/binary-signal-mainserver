@@ -104,8 +104,8 @@ if(__name__=='__main__'):
     status = []
     last_status = []
     print('Running bot.')
-    try:
-        while True:
+    while True:
+        try:
             if time_check():
                 for action in currency_pair:
                     data,level = check_winrate(action)
@@ -128,6 +128,7 @@ if(__name__=='__main__'):
                 elif status == last_status:
                     print('No update.')
                     time.sleep(10)
+        
+        except Exception as e:
+            print(e)
 
-    except:
-        print("error")

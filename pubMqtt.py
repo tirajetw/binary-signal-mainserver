@@ -21,7 +21,7 @@ port = 1883                         #Broker port
 user = "iqbot"                    #Connection username
 password = "admin"            #Connection password
 topic = "test"
-client = mqttClient.Client("main-02")               #create new instance
+client = mqttClient.Client("main-01")               #create new instance
 client.username_pw_set(user, password=password)    #set username and password
 client.on_connect= on_connect                      #attach function to callback
  
