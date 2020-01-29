@@ -129,7 +129,7 @@ if(__name__ == '__main__'):
                 print('Updated.')
                 pubMqtt.pubMQTT(statusJson)
                 status.clear()
-                time.sleep(10)
+                time.sleep(30)
 
         except Exception as e:
             print(e)
