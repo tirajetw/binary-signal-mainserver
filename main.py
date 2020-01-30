@@ -129,7 +129,7 @@ if(__name__ == '__main__'):
                 print('Updated.')
                 pubMqtt.pubMQTT(statusJson)
                 status.clear()
-                for x in range(30)
+                for x in range(30):
                     spinner = spinning_cursor()
                     for _ in range(5):
                         sys.stdout.write(next(spinner))
