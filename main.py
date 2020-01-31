@@ -59,12 +59,12 @@ def check_winrate(action):
                     or x == loss_index[7]):
                 result_data.append(0)
     # recommend part
-    j = 7
+    j = 8
     sum_weight = 0
     for i in result_data:
         sum_weight = i * j + sum_weight
         j = j-1
-    recommended_level = sum_weight/0.28
+    recommended_level = sum_weight/0.36
     recommended_level = int(recommended_level)
 
     return result_data, recommended_level
