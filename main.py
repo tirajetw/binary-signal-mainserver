@@ -116,6 +116,7 @@ if(__name__ == '__main__'):
     while True:
         try:
             if True:
+                print(datetime.datetime.now())
                 for action in currency_pair:
                     data, level = check_winrate(action)
                     print(action, data, level)
@@ -131,7 +132,7 @@ if(__name__ == '__main__'):
                 pubMqtt.pubMQTT(statusJson)
                 status.clear()
                 print('- ' * 20)
-                print(datetime.datetime.now())
+                
                 for x in range(30):
                     spinner = spinning_cursor()
                     for _ in range(5):
@@ -140,6 +141,7 @@ if(__name__ == '__main__'):
                         time.sleep(0.1)
                         sys.stdout.write('\b')
                     time.sleep(1)
+                    
 
         except Exception as e:
             print(e)
