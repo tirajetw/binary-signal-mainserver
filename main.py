@@ -5,6 +5,7 @@ import mechanicalsoup
 import pubMqtt
 import json
 import operator
+import datetime
 
 currency_pair = {
     'EURUSD',
@@ -130,6 +131,7 @@ if(__name__ == '__main__'):
                 pubMqtt.pubMQTT(statusJson)
                 status.clear()
                 print('- ' * 20)
+                print(datetime.datetime.now())
                 for x in range(30):
                     spinner = spinning_cursor()
                     for _ in range(5):
