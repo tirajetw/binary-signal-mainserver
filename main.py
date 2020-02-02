@@ -133,7 +133,7 @@ if(__name__ == '__main__'):
                 status.clear()
                 print('- ' * 20)
                 
-                for x in range(30):
+                for x in range(15):
                     spinner = spinning_cursor()
                     for _ in range(5):
                         sys.stdout.write(next(spinner))
