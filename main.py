@@ -115,7 +115,7 @@ if(__name__ == '__main__'):
     print('Running bot.')
     while True:
         try:
-            if True:
+            if time_check():
                 print(datetime.datetime.now())
                 for action in currency_pair:
                     data, level = check_winrate(action)
