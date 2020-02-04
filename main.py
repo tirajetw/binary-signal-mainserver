@@ -48,7 +48,7 @@ def check_winrate(action):
                 or x == win_index[6]
                     or x == win_index[7]):
                 result_data.append(1)
-        except Exception as e:
+        except Exception:
             if (x == loss_index[0]
                 or x == loss_index[1]
                 or x == loss_index[2]
@@ -141,6 +141,6 @@ if(__name__ == '__main__'):
                         time.sleep(0.1)
                         sys.stdout.write('\b')
                     time.sleep(1)
-                    
+
         except Exception as e:
             print(e)
