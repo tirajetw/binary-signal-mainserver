@@ -1,4 +1,3 @@
-import paho.mqtt.client as mqttClient
 import time
 import sys
 import mechanicalsoup
@@ -49,7 +48,7 @@ def check_winrate(action):
                 or x == win_index[6]
                     or x == win_index[7]):
                 result_data.append(1)
-        except:
+        except Exception as e:
             if (x == loss_index[0]
                 or x == loss_index[1]
                 or x == loss_index[2]
@@ -116,6 +115,7 @@ if(__name__ == '__main__'):
     while True:
         try:
             if time_check():
+            # if True:
                 print(datetime.datetime.now())
                 for action in currency_pair:
                     data, level = check_winrate(action)
@@ -142,6 +142,5 @@ if(__name__ == '__main__'):
                         sys.stdout.write('\b')
                     time.sleep(1)
                     
-
         except Exception as e:
             print(e)
