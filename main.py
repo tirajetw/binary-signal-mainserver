@@ -114,8 +114,8 @@ if(__name__ == '__main__'):
     print('Running bot.')
     while True:
         try:
-            if time_check():
             # if True:
+            if time_check():
                 print(datetime.datetime.now())
                 for action in currency_pair:
                     data, level = check_winrate(action)
@@ -132,7 +132,6 @@ if(__name__ == '__main__'):
                 pubMqtt.pubMQTT(statusJson)
                 status.clear()
                 print('- ' * 20)
-                
                 for x in range(15):
                     spinner = spinning_cursor()
                     for _ in range(5):

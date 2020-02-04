@@ -7,14 +7,14 @@ def on_connect(client, userdata, flags, rc):
  
         print("Connected to broker")
  
-        global Connected                #Use global variable
-        Connected = True                #Signal connection 
+        global Connected    # Use global variable
+        Connected = True    # Signal connection 
  
     else:
  
         print("Connection failed")
 
-Connected = False   #global variable for the state of the connection
+Connected = False   # global variable for the state of the connection
  
 broker_address= "66.42.54.79"  #Broker address
 port = 1883                         #Broker port
@@ -31,7 +31,7 @@ client.loop_start()        #start the loop
 
 while Connected != True:    #Wait for connection
     time.sleep(0.1)
- 
+
 def pubMQTT(data):
     client.publish(topic,data)
     print("send MQTT")

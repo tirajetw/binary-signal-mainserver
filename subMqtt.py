@@ -1,9 +1,8 @@
 import paho.mqtt.client as mqttClient
-import requests
 import time
 
 line_url = 'https://notify-api.line.me/api/notify'
-token = ''
+token = 'testtest'
 headers = {'content-type':'application/x-www-form-urlencoded','Authorization':'Bearer '+token}
 
 def on_connect(client, userdata, flags, rc):
@@ -22,9 +21,9 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, message):
     print("\nLocation Check-In received: ", message.payload)
     data = message.payload
-    msg = data
-    #r = requests.post(line_url, headers=headers , data = {'message':msg})
-    #print r.text
+    # msg = data
+    # r = requests.post(line_url, headers=headers , data = {'message':msg})
+    # print r.text
 
 Connected = False   #global variable for the state of the connection
  
@@ -50,7 +49,7 @@ client.subscribe(topic)
 try:
     while True:
         time.sleep(1)
- 
+
 except KeyboardInterrupt:
     print("exiting")
     client.disconnect()
