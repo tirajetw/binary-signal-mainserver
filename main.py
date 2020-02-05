@@ -6,6 +6,7 @@ import json
 import operator
 import datetime
 import gsheet
+import os
 from iqoptionapi.stable_api import IQ_Option
 
 os.system('clear')
