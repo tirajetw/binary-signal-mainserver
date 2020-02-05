@@ -17,6 +17,7 @@ os.system('clear')
 # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s')
 # iq option setting.
 iq = IQ_Option('tirajet.w@gmail.com', '5big09oN')
+mode = 'PRACTICE'
 # allow unlimited reconnect, (_) number of reconnection.
 iq.set_max_reconnect(-1)
 # Check connection.
