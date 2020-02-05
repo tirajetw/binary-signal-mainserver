@@ -5,6 +5,33 @@ import pubMqtt
 import json
 import operator
 import datetime
+import gsheet
+from iqoptionapi.stable_api import IQ_Option
+
+os.system('clear')
+
+## INITIALIZE PART ##
+# Connecting  to IQ server.
+# allow to logging.
+# logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s')
+# iq option setting.
+iq = IQ_Option('tirajet.w@gmail.com', '5big09oN')
+# allow unlimited reconnect, (_) number of reconnection.
+iq.set_max_reconnect(-1)
+# Check connection.
+
+while iq.check_connect() == False:  # detect the websocket is close
+    print("try reconnect")
+    iq.connect()  # try to connect
+    print("reconnect Success")
+    time.sleep(1)
+
+# send status updated.
+print("\n\n\tConnection Success.\n\n")
+print('\nWorking in \"' + mode + ' MODE\"\n')
+# check balance and change mode.
+iq.change_balance(mode)
+balance = float(str(iq.get_balance()))
 
 currency_pair = {
     'EURUSD',
@@ -116,6 +143,7 @@ if(__name__ == '__main__'):
         try:
             # if True:
             if time_check():
+                gsheet.balance_update(iq.get_balance())
                 print(datetime.datetime.now())
                 for action in currency_pair:
                     data, level = check_winrate(action)
