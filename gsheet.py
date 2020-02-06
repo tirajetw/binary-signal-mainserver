@@ -20,7 +20,7 @@ def balance_update(balance):
     payload         = 'python3 ./google/append2gsheet.py --data ' + current_time + ',' + str(balance) + ' --sheetid 1uxG4YKI2v5tb-ZJkWvX58t8FdHmx93xAmhEnXeB9SRA --range "' + 'balance' + '" --noauth_local_webserver'
     os.system(payload)
 
-balance_update(1000)
+# balance_update(1000)
 # result_update('TEST','call','win',1000,10000)
 # signal_update('TEST','call')
 
