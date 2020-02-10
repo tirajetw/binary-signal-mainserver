@@ -112,6 +112,7 @@ def time_check():
     time.sleep(1)
     for x in range(4):
         if(int(timeis.tm_min) == cal[x]):
+            time.sleep(15)
             print("check winrate.")
             return True
     return False
@@ -162,7 +163,7 @@ if(__name__ == '__main__'):
                 pubMqtt.pubMQTT(statusJson)
                 status.clear()
                 print('- ' * 20)
-                for x in range(15):
+                for x in range(60):
                     spinner = spinning_cursor()
                     for _ in range(5):
                         sys.stdout.write(next(spinner))
