@@ -141,22 +141,35 @@ def listToString(s):
 if(__name__ == '__main__'):
     status = []
     last_status = []
+    balance_now = iq.get_balance()
+    balance_last = balance_now
+    lost_cnt = 0
     print('Running bot.')
     while True:
         try:
             # if True:
             if time_check():
-                gsheet.balance_update(iq.get_balance())
+                balance_now = iq.get_balance()
+                gsheet.balance_update(balance_now)
                 print(datetime.datetime.now())
                 for action in currency_pair:
                     data, level = check_winrate(action)
                     print(action, data, level)
-                    if level >= 2:
-                        status.append(tuple((action, level)))
-                    # else:
-                    #     status.append(0)
+                    status.append(tuple((action, level)))
 
                 status.sort(key=operator.itemgetter(1), reverse=True)
+
+                if balance_now < balance_last:
+                    lost_cnt = lost_cnt + 1
+                    print('LOST')
+                elif balance_now > balance_last:
+                    lost_cnt = 0
+                    print('WIN')
+                else:
+                    lost_cnt = lost_cnt
+                    print('HOLD')
+
+                status.append(tuple(('LSTCNT', lost_cnt)))
                 statusJson = json.dumps(status)
                 print(statusJson)
                 print('Updated.')
@@ -171,6 +184,7 @@ if(__name__ == '__main__'):
                         time.sleep(0.1)
                         sys.stdout.write('\b')
                     time.sleep(1)
+                balance_last = balance_now
 
         except Exception as e:
             print(e)
