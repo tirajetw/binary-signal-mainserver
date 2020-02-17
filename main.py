@@ -169,7 +169,7 @@ if(__name__ == '__main__'):
                     lost_cnt = lost_cnt
                     print('HOLD')
 
-                status[0] = ["USDCAD",100]
+                status[0] = ['AUDUSD',100]
                 status.append(tuple(('LSTCNT', lost_cnt)))
                 statusJson = json.dumps(status)
                 print(statusJson)
